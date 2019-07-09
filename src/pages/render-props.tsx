@@ -16,8 +16,8 @@ class Cat extends PureComponent <Point> {
     const point = this.props
     const style = {
       position: 'fixed' as 'fixed',
-      top: `${point.x}px`,
-      left: `${point.y}px`,
+      top: `${ point.x }px`,
+      left: `${ point.y }px`,
       width: '80px'
     }
     return (
@@ -57,26 +57,15 @@ class Mouse extends PureComponent <MouseProps, Point> {
   }
 }
 
-// export class RenderPropsDemo extends PureComponent {
+export default class RenderPropsDemo extends PureComponent {
 
-//   catRender = (point: Point) => (
-//     <Cat x={point.x} y={point.y} />
-//   )
-
-//   render() {
-//     return (
-//       <Mouse render={this.catRender} />
-//     )
-//   }
-// }
-
-export default function() {
-
-  const catRender = (point: Point) => (
+  catRender = (point: Point) => (
     <Cat x={point.x} y={point.y} />
   )
 
-  return (
-    <Mouse render={catRender} />
-  )
+  render() {
+    return (
+      <Mouse render={this.catRender} />
+    )
+  }
 }

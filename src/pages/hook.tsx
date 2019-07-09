@@ -80,7 +80,7 @@ export default class HookDemo extends PureComponent {
   }
 
   switchPart = () => {
-    this.setState({isPartOne: !this.state.isPartOne})
+    this.setState({ isPartOne: !this.state.isPartOne })
   }
 
   render() {

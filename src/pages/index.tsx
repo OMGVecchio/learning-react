@@ -21,6 +21,9 @@ export default function() {
         <li>
           <Link to="/hook">hook</Link>
         </li>
+        <li>
+          <Link to="/context">context</Link>
+        </li>
       </ul>
     </div>
   );
