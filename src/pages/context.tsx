@@ -15,6 +15,7 @@ class Parent extends PureComponent {
   }
 }
 
+// static contextType 直接绑定使用
 class ChildOne extends PureComponent {
 
   static contextType = ColorContext
@@ -32,6 +33,7 @@ class ChildOne extends PureComponent {
   }
 }
 
+// Context.Consumer 消费者模式调用
 const ChildTwo = () => {
 
   return (<div>already hidden</div>)

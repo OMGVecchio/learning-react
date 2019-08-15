@@ -16,13 +16,22 @@ export default function() {
           </a>
         </li>
         <li>
-          <Link to="/render-props">render-props</Link>
+          <Link to="/renderProps">renderProps</Link>
         </li>
         <li>
           <Link to="/hook">hook</Link>
         </li>
         <li>
           <Link to="/context">context</Link>
+        </li>
+        <li>
+          <Link to="/createPortal">createPortal</Link>
+        </li>
+        <li>
+          <Link to="/lazySuspence">lazt/Suspence</Link>
+        </li>
+        <li>
+          <Link to="/lifecycle">lifeCycle</Link>
         </li>
       </ul>
     </div>
