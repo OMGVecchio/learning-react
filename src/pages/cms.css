@@ -1,0 +1,11 @@
+.container {
+  height: 500px;
+  position: relative;
+  background-color: skyblue;
+}
+
+.demoIcon {
+  border: 1px solid sandybrown;
+  margin: 2px;
+  padding: 2px;
+}

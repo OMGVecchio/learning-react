@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function () {
   return (
-    <div>lazy-component loaded</div>
+    <div draggable={true}>lazy-component loaded</div>
   )
 }
