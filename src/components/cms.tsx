@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 
 import { ComponentItem } from '../pages/cms'
+import { ComponentCtx } from '../pages/cms'
 
 export default (componentItem: ComponentItem) => {
+  const { dispatch } = useContext(ComponentCtx)
   const componentRef = useRef()
   const style: React.CSSProperties = {
     position: 'absolute',
@@ -20,6 +22,9 @@ export default (componentItem: ComponentItem) => {
     }
     const dataFormat = JSON.stringify(data)
     e.dataTransfer.setData('componentInfo', dataFormat)
+  }
+  const focus = () => {
+    componentItem.choiceComponent(componentItem.index, dispatch)
   }
   const commonProps = {
     draggable: true,
