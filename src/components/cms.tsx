@@ -1,11 +1,12 @@
 import React, { useRef, useContext } from 'react'
 
-import { ComponentItem } from '../pages/cms'
 import { ComponentCtx } from '../pages/cms'
 
-export default (componentItem: ComponentItem) => {
+export default (componentItem: ICms.ComponentItem) => {
   const { dispatch } = useContext(ComponentCtx)
-  const componentRef = useRef()
+  // TODO 为啥这里的 useRef 的错，在这里没有错误提示，却提示在 cms1/cms2 调用时的 props 上了？
+  // const componentRef = useRef()
+  const componentRef = useRef(document.createElement('div'))
   const style: React.CSSProperties = {
     position: 'absolute',
     left: componentItem.x,
