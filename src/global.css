@@ -6,3 +6,12 @@ html, body, #root {
 body {
   margin: 0;
 }
+
+.componentCommonStyle {
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.componentIsSelected {
+  border: 1px solid darkorange;
+}

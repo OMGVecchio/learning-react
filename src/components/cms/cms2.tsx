@@ -1,9 +1,9 @@
 import React from 'react'
 
-import CommonCms from './cms'
+import { useComponent } from './use-component'
 
 export default (componentItem: ICms.ComponentItem) => {
-  const [ props ] = CommonCms(componentItem)
+  const [ props ] = useComponent(componentItem)
   return (
     <div {...props}>
       cms2 component

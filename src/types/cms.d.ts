@@ -3,8 +3,7 @@ declare namespace ICms {
     index?: number,
     offsetX?: number,
     offsetY?: number,
-    choiceComponent: Function,
-    type: number,
+    type: string,
     x: number,
     y: number
   }
@@ -17,6 +16,12 @@ declare namespace ICms {
     type: string,
     data: any
   }
+  // .d.ts 声明文件里的枚举应该是仅仅在运行检测时起效果，不能像在外部使用那样进行实体代码的转化
+  // 所以组件的类型
+  // enum ComponentTypes {
+  //   cms1 = 'cms_1',
+  //   cms2 = 'cms_2'
+  // }
 }
 
 // TODO

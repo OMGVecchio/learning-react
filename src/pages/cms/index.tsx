@@ -5,9 +5,11 @@ import React, {
   useReducer,
   useMemo
 } from 'react'
-import C1 from '../components/cms1'
-import C2 from '../components/cms2'
-import style from './cms.css'
+import { RouterTypes } from 'umi'
+import { ComponentTypes } from '../../components/cms/create-component'
+import { renderCanavs } from '../../components/cms/render-canvas'
+
+import style from './index.css'
 
 // store
 const initialState: ICms.State = {
@@ -20,12 +22,11 @@ const reducer = (state: ICms.State, action: ICms.Action) => {
   switch (action.type) {
     case 'modify':
       // TODO 数据更新的问题，假如直接不能通过 index 更新数据，不如新增时创建一个 id？或者采用 immutable？
-      const currentComponent = componentList[data.index || -1]
+      const currentComponent = componentList[data.index]
       currentComponent.x = data.x
       currentComponent.y = data.y
       return {
         ...state,
-        index: data.index,
         componentList: componentList
       }
     case 'add':
@@ -36,12 +37,7 @@ const reducer = (state: ICms.State, action: ICms.Action) => {
           type: data.type,
           x: data.x,
           y: data.y,
-          choiceComponent: (index: number, dispatch: React.Dispatch<ICms.Action>) => {
-            dispatch({
-              type: 'changeFocus',
-              data: { index }
-            })
-          }
+          index: componentList.length
         })
       }
     case 'changeFocus':
@@ -84,32 +80,17 @@ const Container = () => {
       })
     }
   }
-  // TODO 组件的展现形式：通过数据驱动，在主容器内循环所有的操作逻辑进行渲染？
-  // TODO 组件的公共特性：mixin 不易管理，hoc 感觉比较冗余，使用 renderProps 不如 用 hook 试试？
-  const renderComponents = (componentList: ICms.ComponentItem[]) => {
-    return componentList.map((componentItem, index) => {
-      switch (componentItem.type) {
-        case 1:
-          return <C1 {...componentItem} index={index} key={index} />
-        case 2:
-          return <C2 {...componentItem} index={index} key={index} />
-        default:
-          return (<div>给个默认错误信息</div>)
-      }
-    })
-  }
+
   return (
-    <>
-      <div
-        className={style.container}
-        // 解决 onDrop 事件不触发的问题
-        onDragOver={allowDrop}
-        onDrop={dropHandler}
-        ref={container}
-      >
-        {renderComponents(state.componentList)}
-      </div>
-    </>
+    <div
+      className={style.container}
+      // 解决 onDrop 事件不触发的问题
+      onDragOver={allowDrop}
+      onDrop={dropHandler}
+      ref={container}
+    >
+      {renderCanavs(state.componentList)}
+    </div>
   )
 }
 const ContainerWrapper = () => {
@@ -125,9 +106,9 @@ const DemoSidebar = () => {
     const dragTarget = e.target as HTMLElement
     const { x, y } = dragTarget.getBoundingClientRect()
     const [ offsetX, offsetY ] = [ e.pageX - x, e.pageY - y ]
-    const type = dragTarget.dataset.type || 0
+    const type = dragTarget.dataset.type
     const data = {
-      type: +type,
+      type,
       offsetX,
       offsetY
     }
@@ -139,7 +120,7 @@ const DemoSidebar = () => {
       <span
         className={style.demoIcon}
         draggable={true}
-        data-type={1}
+        data-type={ComponentTypes.cms1}
         onDragStart={dragHandler}
       >
         compont1
@@ -147,7 +128,7 @@ const DemoSidebar = () => {
       <span
         className={style.demoIcon}
         draggable={true}
-        data-type={2}
+        data-type={ComponentTypes.cms2}
         onDragStart={dragHandler}
       >
         compont2
@@ -159,7 +140,6 @@ const DemoSidebar = () => {
 // 组件属性栏
 const AttributePanel = () => {
   const { state, dispatch } = useContext(ComponentCtx)
-  if (state.componentList.length === 0) return <div>还没组件了</div>
   // TODO 属性面板怎么来设计最合理？每个组件配置一个属性 config 列表参数，可继承并 disable 一些公共配置？
   const renderAttributeList = () => {
     return (
@@ -175,14 +155,19 @@ const AttributePanel = () => {
   )
 }
 
-export default () => {
+export default (props: RouterTypes) => {
   const [ state, dispatch ] = useReducer(reducer, initialState)
-  const props = { state, dispatch }
+  const store = { state, dispatch }
+  const queryString = JSON.stringify(state.componentList)
+  const preview = () => props.history.push(`/cms/preview?previewData=${queryString}`, state.componentList)
   return (
-    <ComponentCtx.Provider value={props}>
+    <ComponentCtx.Provider value={store}>
       <ContainerWrapper />
       <DemoSidebar />
       <AttributePanel />
+      <div>
+        <button onClick={preview}>去预览吧</button>
+      </div>
     </ComponentCtx.Provider>
   )
 }

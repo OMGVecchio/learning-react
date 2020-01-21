@@ -7,7 +7,7 @@ const LazyComponent = lazy(() => new Promise(resolve => {
   }, 1000)
 }).then(() => import('../components/lazy')))
 
-// lazy 编码强制与 suspence 一起使用
+// lazy 编码强制与 suspense 一起使用
 export default function () {
   return (
     <Suspense fallback={<div>loading~~~</div>}>
