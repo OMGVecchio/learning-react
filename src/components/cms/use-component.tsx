@@ -1,10 +1,13 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef } from 'react'
 import classname from 'classnames'
+import { ComponentProps } from '@/models/cms.d'
 
-import { ComponentCtx } from '../../pages/cms'
-
-export const useComponent = (componentItem: ICms.ComponentItem) => {
-  const { state, dispatch } = useContext(ComponentCtx)
+const useComponent = ({
+  componentItem,
+  index,
+  cms,
+  dispatch
+}: ComponentProps) => {
   // TODO 为啥这里的 useRef 的错，在这里没有错误提示，却提示在 cms1/cms2 调用时的 props 上了？
   // const componentRef = useRef()
   const componentRef = useRef(document.createElement('div'))
@@ -14,8 +17,8 @@ export const useComponent = (componentItem: ICms.ComponentItem) => {
     top: componentItem.y
   }
   const setCurIndex = () => dispatch({
-    type: 'changeFocus',
-    data: { index: componentItem.index }
+    type: 'cms/changeFocus',
+    data: { index: index }
   })
 
   const dragStartHandler = (e: React.DragEvent) => {
@@ -24,7 +27,7 @@ export const useComponent = (componentItem: ICms.ComponentItem) => {
     const [ offsetX, offsetY ] = [e.pageX - x, e.pageY - y]
     const data = {
       isModify: true,
-      index: componentItem.index,
+      index: index,
       offsetX,
       offsetY
     }
@@ -50,9 +53,11 @@ export const useComponent = (componentItem: ICms.ComponentItem) => {
     ref: componentRef,
     className: classname(
       'componentCommonStyle',
-      state.index === componentItem.index && 'componentIsSelected'
+      cms.index === index && 'componentIsSelected'
     )
   }
 
   return [commonProps]
 }
+
+export default useComponent

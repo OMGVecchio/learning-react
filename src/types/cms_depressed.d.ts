@@ -7,6 +7,10 @@ declare namespace ICms {
     x: number,
     y: number
   }
+  interface ComponentProps {
+    componentItem: ComponentItem,
+    index: number
+  }
   type State = {
     componentList: ComponentItem[],
     index: number

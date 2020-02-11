@@ -1,12 +1,17 @@
 import React from 'react'
 import { RouterTypes } from 'umi'
-import { renderCanavs } from '../../components/cms/render-canvas'
+import { connect } from 'dva'
+import { ConnectProps, CommonProps } from '@/models/cms.d'
+import { ComponentItem } from '@/models/cms.d'
+
+import renderCanavs from '../../components/cms/render-canvas'
 import style from './index.css'
 
 // TODO 为啥 RouterTypes 上没 query 字段？
-interface NewRouterTypes extends RouterTypes {
+interface NewRouterTypes extends RouterTypes, CommonProps {
+  // location queryString 方式传值预览测试 depressed
   location: {
-    state: ICms.ComponentItem[],
+    state: ComponentItem[],
     pathname: string,
     search: string,
     hash: string,
@@ -16,10 +21,12 @@ interface NewRouterTypes extends RouterTypes {
     }
   }
 }
+
 export const CmsPreview = (props: NewRouterTypes) => {
   const {
     history,
-    location
+    location,
+    cms
   } = props
   const {
     query,
@@ -31,7 +38,7 @@ export const CmsPreview = (props: NewRouterTypes) => {
   return (
     <>
       <div className={style.container}>
-        {renderCanavs(componentList)}
+        {renderCanavs(cms.componentList || componentList)}
       </div>
       <button onClick={goBack} >上一页</button>
     </>
@@ -39,4 +46,4 @@ export const CmsPreview = (props: NewRouterTypes) => {
   )
 }
 
-export default CmsPreview
+export default connect(({ cms }: ConnectProps) => ({ cms }))(CmsPreview)
