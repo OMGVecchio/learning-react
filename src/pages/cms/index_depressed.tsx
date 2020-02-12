@@ -8,7 +8,7 @@ import React, {
   useMemo
 } from 'react'
 import { RouterTypes } from 'umi'
-import { ComponentTypes } from '../../components/cms/create-component'
+import { ComponentTypes } from '../../components/cms/render-component'
 import renderCanavs from '../../components/cms/render-canvas'
 
 import style from './index.css'

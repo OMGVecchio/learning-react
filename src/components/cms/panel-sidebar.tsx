@@ -1,5 +1,5 @@
 import React from 'react'
-import { ComponentTypes } from './create-component'
+import { ComponentTypes } from './render-component'
 
 import style from '../../pages/cms/index.css'
 

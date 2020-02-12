@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'umi'
-import CanvasContainer from '@/components/cms/canvas-container'
-import DemoSidebar from '@/components/cms/demo-sidebar'
-import AttributePanel from '@/components/cms/attribute-panel'
+import PanelCanvas from '@/components/cms/panel-canvas'
+import PanelSidebar from '@/components/cms/panel-sidebar'
+import PanelAttribute from '@/components/cms/panel-attribute'
 
 export default () => {
   return (
     <>
-      <CanvasContainer />
-      <DemoSidebar />
-      <AttributePanel />
+      <PanelCanvas />
+      <PanelSidebar />
+      <PanelAttribute />
       <Link to="/cms/preview">
         预览一下吧~~~
       </Link>
