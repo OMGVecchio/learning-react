@@ -19,14 +19,18 @@ const CanvasContainer = ({
     const { x = 0, y = 0 } = container.current.getBoundingClientRect()
     const [ relativeX, relativeY ] = [ pageX - x, pageY - y ]
     const dataParsed = JSON.parse(e.dataTransfer.getData('componentInfo'))
-    dataParsed.x = relativeX - dataParsed.offsetX
-    dataParsed.y = relativeY - dataParsed.offsetY
+    const [ realX, realY ] = [ relativeX - dataParsed.offsetX, relativeY - dataParsed.offsetY ]
     if (dataParsed.isModify) {
+      const { componentItem } = dataParsed
+      componentItem.x = realX
+      componentItem.y = realY
       dispatch({
         type: 'cms/modify',
-        data: dataParsed
+        data: componentItem
       })
     } else {
+      dataParsed.x = realX
+      dataParsed.y = realY
       dispatch({
         type: 'cms/add',
         data: dataParsed

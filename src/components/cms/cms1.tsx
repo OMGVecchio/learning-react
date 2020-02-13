@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'dva'
 import { ConnectProps, ComponentProps } from '@/models/cms.d'
+import { Select } from 'antd'
 
 import useComponentModify from './use-component-modify'
 
@@ -15,15 +16,15 @@ const CMS1 = (componentProps: ComponentProps) => {
     value: '2'
   }]
   const renderOptions = () => a.map(item => (
-    <option value={item.id} key={item.id}>
+    <Select.Option value={item.id} key={item.id}>
       {item.value}
-    </option>
+    </Select.Option>
   ))
   return (
     <div {...props}>
-      <select>
+      <Select defaultValue={'1'}>
         {renderOptions()}
-      </select>
+      </Select>
     </div>
   )
 }

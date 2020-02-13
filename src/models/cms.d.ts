@@ -17,7 +17,9 @@ export interface ComponentItem {
   offsetY?: number,
   type: string,
   x: number,
-  y: number
+  y: number,
+  // any 应该具体话
+  style: any
 }
 
 export interface CommonProps {

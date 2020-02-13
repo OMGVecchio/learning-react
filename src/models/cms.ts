@@ -37,17 +37,16 @@ const CmsModel: ModelType = {
           type: data.type,
           x: data.x,
           y: data.y,
-          index: componentList.length
+          index: componentList.length,
+          style: {}
         })
       }
     },
     modifyComponent(state: State, action: Action): State {
       const { componentList } = state
-      const { data } = action
+      const { data: componentItem } = action
       // TODO 数据更新的问题，假如直接不能通过 index 更新数据，不如新增时创建一个 id？或者采用 immutable？
-      const currentComponent = componentList[data.index]
-      currentComponent.x = data.x
-      currentComponent.y = data.y
+      componentList[state.index] = componentItem
       return {
         ...state,
         componentList: componentList

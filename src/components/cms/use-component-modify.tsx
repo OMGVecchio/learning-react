@@ -14,7 +14,8 @@ const useComponent = ({
   const style: React.CSSProperties = {
     position: 'absolute',
     left: componentItem.x,
-    top: componentItem.y
+    top: componentItem.y,
+    color: componentItem.color
   }
   const setCurIndex = () => dispatch({
     type: 'cms/changeFocus',
@@ -29,7 +30,8 @@ const useComponent = ({
       isModify: true,
       index: index,
       offsetX,
-      offsetY
+      offsetY,
+      componentItem
     }
     const dataFormat = JSON.stringify(data)
     e.dataTransfer.setData('componentInfo', dataFormat)
@@ -53,7 +55,8 @@ const useComponent = ({
     ref: componentRef,
     className: classname(
       'componentCommonStyle',
-      cms.index === index && 'componentIsSelected'
+      cms.index === index && 'componentIsSelected',
+      `style_${componentItem.index}`
     )
   }
 

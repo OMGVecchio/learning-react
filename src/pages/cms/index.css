@@ -1,17 +1,34 @@
+.wrapper {
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container {
   height: 500px;
+  width: 100%;
   position: relative;
   background-color: skyblue;
 }
 
+.demoSidebar {
+  height: 100%;
+  padding: 20px 5px;
+  min-width: 200px;
+}
 .demoIcon {
   border: 1px solid sandybrown;
   margin: 2px;
   padding: 2px;
 }
-.demoSidebar {
-  margin-top: 10px;
-}
+
 .attributePanel {
-  margin-top: 10px;
+  height: 100%;
+  padding: 20px 5px;
+  min-width: 200px;
+}
+.attributePanel p {
+  text-align: left;
 }

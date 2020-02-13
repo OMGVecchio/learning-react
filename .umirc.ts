@@ -6,7 +6,7 @@ const config: IConfig =  {
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
-      antd: false,
+      antd: true,
       dva: true,
       dynamicImport: { webpackChunkName: true },
       title: 'umi-demo',
