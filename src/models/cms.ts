@@ -24,7 +24,13 @@ const CmsModel: ModelType = {
         type: 'changeComponentFocus',
         data: action.data
       })
-    }
+    },
+    *undo(_: Action, { put }) {
+      yield put({ type: 'undo' })
+    },
+    *redo(_: Action, { put }) {
+      yield put({ type: 'redo' })
+    },
   },
   reducers: {
     addComponent(state: State, action: Action): State {
@@ -59,7 +65,17 @@ const CmsModel: ModelType = {
         ...state,
         index: data.index
       }
-    }
+    },
+    undo(state: State, action: Action): State {
+      return {
+        ...state,
+      }
+    },
+    redo(state: State, action: Action): State {
+      return {
+        ...state,
+      }
+    },
   }
 }
 

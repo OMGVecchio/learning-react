@@ -2,7 +2,7 @@ import React from 'react'
 import { Collapse } from 'antd'
 import style from '@/pages/cms/index.css'
 
-import { ComponentTypes } from './render-component'
+import { ComponentTypes } from '../render-component'
 
 const { Panel } = Collapse
 

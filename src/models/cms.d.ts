@@ -38,12 +38,16 @@ export interface ModelType {
   effects: {
     add: Effect,
     modify: Effect,
-    changeFocus: Effect
+    changeFocus: Effect,
+    undo: Effect,
+    redo: Effect,
   },
   reducers: {
     add: Reducer<State>,
     modify: Reducer<State>,
-    changeFocus: Reducer<State>
+    changeFocus: Reducer<State>,
+    undo: Reducer<State>,
+    redo: Reducer<State>,
   }
 }
 

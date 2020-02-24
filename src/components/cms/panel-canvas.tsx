@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
 import { connect } from 'dva'
+import style from '@/pages/cms/index.css'
 import { ConnectProps, CommonProps } from '@/models/cms.d'
 
+import Ruler from './ruler'
 import renderCanavs from './render-canvas'
-import style from '../../pages/cms/index.css'
 
 // 编辑器主题内容区
 const CanvasContainer = ({
@@ -38,15 +39,33 @@ const CanvasContainer = ({
     }
   }
 
+  const width = 1920
+  const height = 1080
+  const containerStyle = {
+    width: `${width}px`,
+    height: `${height}px`
+  }
+
   return (
-    <div
-      className={style.container}
-      // 解决 onDrop 事件不触发的问题
-      onDragOver={allowDrop}
-      onDrop={dropHandler}
-      ref={container}
-    >
-      {renderCanavs(cms.componentList)}
+    <div className={style.containerWrapper}>
+      <Ruler width={width} height={height} />
+      <div className={style.containerLayout}>
+        <div
+          className={style.container}
+          // 解决 onDrop 事件不触发的问题
+          onDragOver={allowDrop}
+          onDrop={dropHandler}
+          ref={container}
+          style={containerStyle}
+        >
+          <>
+            <div style={{height: '100px', width: '100px', lineHeight: '100px', backgroundColor: 'skyblue'}}>
+              100 x 100
+            </div>
+            {renderCanavs(cms.componentList)}
+          </>
+        </div>
+      </div>
     </div>
   )
 }

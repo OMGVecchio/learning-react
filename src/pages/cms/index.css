@@ -3,32 +3,106 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
+.containerWrapper {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  position: relative;
+}
+.containerLayout {
+  padding: 20px 0 0 20px;
+  height: 100%;
+  width: 100%;
+}
 .container {
-  height: 500px;
+  margin: 20px 0 0 20px;
+  height: 100%;
   width: 100%;
   position: relative;
-  background-color: skyblue;
+  background-color: #494f60;
+}
+
+.rulerWraper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: left;
+}
+.rulerHorizontal {
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image:
+    repeating-linear-gradient(90deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 100px),
+    repeating-linear-gradient(90deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 50px),
+    repeating-linear-gradient(90deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 10px),
+    repeating-linear-gradient(90deg, #494f60 0, #494f60 100%);
+  background-position: 40px 100%, 40px 100%, 40px 100%, 0 100%;
+  background-size: 100% 10px, 100% 6px, 100% 4px, 100% 1px;
+  background-repeat: no-repeat;
+  color: #494f60;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: left;
+}
+.rulerVertical {
+  width: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image:
+    repeating-linear-gradient(180deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 100px),
+    repeating-linear-gradient(180deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 50px),
+    repeating-linear-gradient(180deg, #494f60 0, #494f60 0.4px, transparent 0, transparent 10px),
+    repeating-linear-gradient(180deg, #494f60 0, #494f60 100%);
+  background-position: 100% 40px, 100% 40px, 100% 40px, 100% 0;
+  background-size: 10px 100%, 6px 100%, 4px 100%, 1px 100%;
+  background-repeat: no-repeat;
+  color: #494f60;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: left;
+}
+.rulerMeasure {
+  font-size: 14px;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1;
+}
+.rulerMeasureHorizontal {
+  width: 40px;
+  top: 0px;
+  font-size: 14px;
+}
+.rulerMeasureVertical {
+  width: 40px;
+  left: -14px;
+  font-size: 14px;
+  transform: rotate(-90deg);
 }
 
 .demoSidebar {
   height: 100%;
-  padding: 20px 5px;
-  min-width: 200px;
+  min-width: 180px;
 }
 .demoIcon {
-  border: 1px solid sandybrown;
   margin: 2px;
   padding: 2px;
 }
 
 .attributePanel {
   height: 100%;
-  padding: 20px 5px;
-  min-width: 200px;
+  min-width: 300px;
 }
-.attributePanel p {
+.basicAttribute {
+  padding: 0 10px;
+}
+.basicAttribute p {
   text-align: left;
 }
